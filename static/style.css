@@ -1,0 +1,122 @@
+/*
+    Define colors as variables
+*/
+
+:root {
+    --black: #222;
+    --white: #eee;
+
+    --blue: #413075;
+    --red: #AA3C39;
+    --green: #2D8632;
+    --yellow: #AA9739;
+
+    --dark: #101010;
+    --light: #999;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--black);
+}
+
+main {
+    /* border-radius: 32px; */
+    background-color: var(--light);
+    width: 80%;
+    margin: 32px auto;
+    box-shadow: 32px 32px var(--blue);
+}
+
+nav {
+    font-size: 120%;
+    font-family: 'Roboto Mono', monospace;
+    background-color: var(--dark);
+    /* position: sticky; */
+    top: 0;
+    /* border-top-left-radius: 32px;
+    border-top-right-radius: 32px; */
+}
+
+nav ul {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: var(--white);
+    text-align: center;
+    padding: 24px 24px;
+    text-decoration: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    transition: ease 0.5s;
+}
+
+nav li a:hover {
+    box-shadow: 0 8px var(--red);
+    top: -8px;
+    /* left: -8px; */
+}
+
+h1 {
+    font-size: 128px;
+    color: var(--dark);
+    text-align: center;
+    padding: 16px;
+    font-family: 'Righteous', cursive;
+}
+
+.box {
+    text-decoration: none;
+    color: var(--black);
+    background-color: var(--white);
+    margin: 16px auto 64px;
+    display: inline-block;
+    width: 400px;
+    height: 300px;
+    position: relative;
+    top: 0;
+    left: 0;
+    transition: ease 0.5s;
+    padding: 32px;
+}
+
+.box:hover {
+    top: -8px;
+    left: -8px;
+    box-shadow: 16px 16px var(--green);
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
+h2 {
+    font-size: 150%;
+    font-family: 'Roboto Mono', monospace;
+}
+
+p {
+    font-size: 125%;
+    line-height: 1.5em;
+    font-family: 'Roboto Mono', monospace;
+    margin: 32px 0;
+}
+
+#theme, #limit, #both {
+    width: 300px;
+    height: 200px;
+}

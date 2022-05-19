@@ -1,0 +1,101 @@
+<!--
+    This is the basic landing page for ArtJam
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>
+        ArtJam: Weekly art challenges
+    </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    <!--
+        Google fonts
+     -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <!--
+        Scripts
+     -->
+</head>
+
+<body>
+    <main class="color">
+    <nav>
+        {% block nav %}
+        <ul>
+            <li>
+                <a class="nav-item nav-link" href="{{ url_for('index') }}">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a  class="nav-item nav-link" href=" {{ url_for( 'about' ) }}">
+                    About
+                </a>
+            </li>
+            <li>
+                <a class="nav-item nav-link" href="{{ url_for( 'current' ) }}">
+                    Current
+                </a>
+            </li>
+            <li>
+                <a class="nav-item nav-link" href="{{ url_for( 'previous' ) }}">
+                    Previous
+                </a>
+            </li>
+            <li style="float:right">
+                <a class="nav-item nav-link" href="{{ url_for( 'profile' ) }}">
+                    Profile
+                </a>
+            </li>
+        </ul>
+        {% endblock nav %}
+    </nav>
+
+        <h1>
+            ArtJam
+        </h1>
+        <!-- END CONTENT BLOCK -->
+        <div class="content">
+            {% block content %}
+            <a href="#" class="box">
+                <div>
+                    <h2>
+                        Welcome!
+                    </h2>
+                    <p>
+                        ArtJam is a weekly art challenge open to anyone!
+                    </p>
+                    <p>
+                        Each week, a <strong>theme</strong> and <strong>style</strong> are chosen at random.
+                        You have one week to create something that fits both.
+                    </p>
+                </div>
+            </a>
+
+            <a href="#" class="box">
+                <div>
+                    <h2>
+                        Current Jam
+                    </h2>
+                    <p>
+                        This week's theme is <strong>{{ theme }}</strong>.
+                    </p>
+                    <p>
+                        The style is <strong>{{ style }}s</strong>.
+                    </p>
+                    <p>
+                        The challenge ends in 2 days, 3 hours, 17 minutes, and 52 seconds.
+                    </p>
+                </div>
+            </a>
+            {% endblock content %}
+        </div> <!-- END CONTENT BLOCK -->
+
+    </main>
+</body>
+</html>
