@@ -8,3 +8,5 @@ import secrets
 
 def save_image(form_file):
     """Attempts to save an uploaded image"""
+
+
