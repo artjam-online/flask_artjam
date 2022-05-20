@@ -1,13 +1,17 @@
 from flask import Flask, url_for, redirect, request, render_template
-
+from flask_bootstrap import Bootstrap
 import os
 import pathlib
 import random
 from pprint import pprint
+from forms import LoginForm, RegisterForm
+
 
 project_limitations = []
 project_themes = []
+os.chdir('/Users/williammurphy/project_git/flask_artjam')
 # Read in project limitations
+# print(pathlib.Path(os.getcwd()).absolute())
 with open(os.path.join(pathlib.Path(os.getcwd()).absolute(), 'art_jam_files', 'limits.txt')) as f:
     for line in f.readlines():
         project_limitations.append(line.strip('\n'))
@@ -19,10 +23,18 @@ with open(os.path.join(pathlib.Path(os.getcwd()).absolute(), 'art_jam_files', 't
 
 # Flask App
 app = Flask(__name__)
+Bootstrap(app)
+
 # Upload Setup
 UPLOAD_FOLDER = os.path.join(pathlib.Path(os.getcwd()).absolute(), 'uploads')
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['SECRET_KEY'] = 'secret'
+app.config['RECAPTCHA_PUBLIC_KEY'] = '6LfMEAYgAAAAAHOnAz8LoPdGRCFPMcBaARlhsFc1'
+app.config['RECAPTCHA_PRIVATE_KEY'] = '6LfMEAYgAAAAAMlG8kQB87XN9g0eAyDIRjlG5mYF'
+app.config['TESTING'] = True
+
+
 
 # App Route Functions #
 #######################################################################################
@@ -57,6 +69,19 @@ def upload_file():
         # f.save(sec)
     return render_template('upload_form.html')
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        return redirect('profile')
+    return render_template('login.html', form=form)
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        return redirect('profile')
+    return render_template('register.html', form=form)
 
 
 
@@ -77,4 +102,4 @@ def internal_server_error(e):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
