@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="content-section">
+        <form method="post" action="{{ url_for('upload') }}"  enctype="multipart/form-data" >
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Upload an Image</legend>
+                    {{ form.file }}
+                    <br>
+                    {{ form.submit }}
+            </fieldset>
+        </form>
+    </div>
+
+{% endblock content %}

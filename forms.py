@@ -3,7 +3,8 @@ forms.py
 ~~~~~~~~
 """
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextField
+from flask_wtf.file import FileField, FileAllowed
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextField, FileField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, AnyOf
 from wtforms.validators import InputRequired
 
@@ -34,3 +35,9 @@ class RegisterForm(FlaskForm):
                              validators=[InputRequired(message='A password is required'),
                                          Length(min=8, message='Password must be 8 or more characters')])
     submit = SubmitField('submit')
+
+
+class UploadForm(FlaskForm):
+    text = StringField("UPLOAD FILES HERE")
+    file = FileField('Upload an image', validators=[FileAllowed(['jpg', 'png'])])
+    submit = SubmitField('Upload')

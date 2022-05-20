@@ -1,10 +1,11 @@
-from flask import Flask, url_for, redirect, request, render_template
+from flask import Flask, url_for, redirect, request, render_template, flash
 from flask_bootstrap import Bootstrap
 import os
 import pathlib
 import random
 from pprint import pprint
-from forms import LoginForm, RegisterForm
+from werkzeug.utils import secure_filename
+from forms import LoginForm, RegisterForm, UploadForm
 
 
 project_limitations = []
@@ -26,14 +27,19 @@ app = Flask(__name__)
 Bootstrap(app)
 
 # Upload Setup
-UPLOAD_FOLDER = os.path.join(pathlib.Path(os.getcwd()).absolute(), 'uploads')
+UPLOAD_FOLDER = os.path.join(pathlib.Path(os.getcwd()).absolute(), 'art_folder')
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# images = UploadSet('images', IMAGES)
+# configure_uploads(app, images)
+
+# Flask app configuration
+# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SECRET_KEY'] = 'secret'
 app.config['RECAPTCHA_PUBLIC_KEY'] = '6LfMEAYgAAAAAHOnAz8LoPdGRCFPMcBaARlhsFc1'
 app.config['RECAPTCHA_PRIVATE_KEY'] = '6LfMEAYgAAAAAMlG8kQB87XN9g0eAyDIRjlG5mYF'
 app.config['TESTING'] = True
 
+#
 
 
 # App Route Functions #
@@ -61,13 +67,20 @@ def previous():
 def profile():
     return render_template('profile.html')
 
+
+
+
+
+
 @app.route('/upload', methods=['GET', 'POST'])
-def upload_file():
-    if request.method == 'POST':
-        pass
-        # f = request.files['file']
-        # f.save(sec)
-    return render_template('upload_form.html')
+def upload():
+    form = UploadForm()
+    if form.validate_on_submit():
+        if form.file.data:
+            picture_file = ""
+
+        return redirect('profile')
+    return render_template('upload.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
