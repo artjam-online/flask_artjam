@@ -7,6 +7,7 @@
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Upload an Image</legend>
                     {{ form.file }}
+                    filename: {{ form.file.data.filename }}
                     <br>
                     {{ form.submit }}
             </fieldset>

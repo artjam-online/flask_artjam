@@ -4,7 +4,7 @@ forms.py
 """
 from flask_wtf import FlaskForm, RecaptchaField
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextField, FileField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField,  FileField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, AnyOf
 from wtforms.validators import InputRequired
 
